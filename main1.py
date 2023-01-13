@@ -22,7 +22,6 @@ def load_model():
 
 def create_img(path):
     #Function to load,normalize and return image 
-    print(path)
     im = Image.open(path).convert('RGB')
     
     im = np.array(im)
@@ -44,7 +43,7 @@ def predict(path):
     count = np.sum(ans)
     return count
 
-import numpy as np
+
 
 
 
@@ -54,18 +53,14 @@ app = FastAPI()
 class UserInput(BaseModel):
     user_input: str
 
-@app.get('/')
+
+@app.get("/")
 async def index():
     return {"Message": "This is Index"}
 
-@app.get('/predict/')
-async def predict(UserInput: UserInput):
+@app.post("/predict/")
+async def predict_api(user_input: UserInput):
+    prediction = float(predict(user_input.user_input))
+    return {"prediction": prediction}
 
-    prediction = predict([UserInput.user_input])
 
-    return {"prediction": float(prediction)}
-@app.put("/items/{item_id}")
-def update_item(user_input: UserInput, ):
-    prediction = predict([user_input.user_input])
-
-    return {"prediction": float(prediction)}
