@@ -43,7 +43,7 @@ class DetectionInput(BaseModel):
 def detection(inp:DetectionInput):
     time_start=time.time()
     try:
-        count = predict(inp.image)
+        count = float(predict(inp.image))
         print("after predict")
     except Exception as e:
         return BasicResponse(status_code=400,message=str(e),content={
