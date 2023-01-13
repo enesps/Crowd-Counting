@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 import time
-from ipynb.fs.full.Inference import predict
+from ipynb.fs.full.Predict-Model import predict
 app=FastAPI(
     docs_url="/docs",
     title="Crowd Density Model API",
